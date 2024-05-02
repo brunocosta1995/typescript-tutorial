@@ -5,14 +5,15 @@ let exemplo: any = '1234';
 let varNumber: number = exemplo as number;
 let varString: string = <string>exemplo;
 
+
 //Outro exemplo
 type One = string;
 type Two = string | number;
 type Three = 'hello';
 
 let a: Two = 45;
-let b = a as Two; //
-// let c = a as Three; //não é possível pois a atribuição é uma string
+let b = a as Two;
+let c = <Three>b; //não é possível pois a atribuição é uma string
 let d = <One>'OláMundo';
 let e = <Two>d
 let f = <string | number>'world'
@@ -34,14 +35,14 @@ let segundoResult: number = <number>addOrConcat(2, 2, 'concat');
 (10 as unknown) as string
 
 //assertion é bom para ser usado com o DOM, pois a designação sempre retorna null ou 'HTMLElement'
-//Usando a ! no assetion determina que o elemento não será 'null'
+//Usando a ! no assertion determina que o elemento não será 'null'
 const img = document.querySelector('img')!;
 const myImg = document.getElementById('#myId') as HTMLImageElement;
 const nextImg = <HTMLImageElement>document.getElementById('#myImg');
 
 //ao acessar a prop src é preciso determinar especificamente o type
-img.src
-myImg.src
+console.log(img.src);
+console.log(myImg.src);
 
 
 

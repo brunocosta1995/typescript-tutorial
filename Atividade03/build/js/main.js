@@ -4,7 +4,7 @@ let stringArr = ['bruno', 'costa', 'silva'];
 let arrNumbStr = ['john', 44, 'dave'];
 let arrBoolStrNumb = [true, 'ok', 1995];
 stringArr.push(1999);
-stringArr.unshift(arrBoolStrNumb[0]);
+stringArr.unshift(arrBoolStrNumb[1]);
 const varStr = arrBoolStrNumb[1]; // varStr possui tbm a determinação dos tipos de arrBoolStrNumb
 stringArr[0] = varStr;
 arrNumbStr = arrBoolStrNumb;
@@ -13,13 +13,14 @@ console.log(stringArr);
 console.log(arrNumbStr);
 console.log(arrBoolStrNumb);
 let bands = [];
+bands.push(stringArr[0]);
 let test = [];
 bands = test;
 test = bands;
 let myTuple = ['bruno', 28, true]; //Array Tuple restrito em tipo, posição, quantidade
 myTuple.push('arr'); //adc novo elemento
 myTuple[3] = 'tereza';
-console.log(myTuple);
+console.log('tupla = ' + myTuple);
 let myArr = ['pamella', 22, false];
 myTuple = myArr;
 myArr = myTuple;
@@ -38,6 +39,12 @@ cadastro.nome = 42;
 cadastro.nome = 'Pamella';
 cadastro.existe = 52;
 cadastro.existe = false;
+let novoCurso = {
+    nome: 'programação',
+    status: true,
+    alunos: [1, 4, 'bruno']
+};
+console.log(novoCurso);
 //todos os atributos devem ser preenchidos do tipo determinado
 let curso1 = {
     nome: 'matemática',

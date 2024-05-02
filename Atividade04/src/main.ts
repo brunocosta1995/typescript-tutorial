@@ -1,7 +1,7 @@
 //types alternativas
 type stringOrNUmber = string | number;
 
-type stringOrNumberArray = (string | number)[]
+type stringOrNumberArray = (string | number)[];
 
 type Curso = {
     nome: string,
@@ -42,7 +42,7 @@ let subtract = function (c: number, d: number): number {
 
 logMsg(`A subtração é ${subtract(10,5)}`);
 
-type mathFunction = (a: number, b: number) => number;
+type mathFunction = (a: number, b: number) => number; //retorna number type para funções 
 
 //alternativa com interface - que é utilizada em POO com JS
 interface functionMat {
@@ -80,7 +80,7 @@ logMsg(addAll(2,2,1))       //5
 logMsg(addAll(2,2))         //4
 logMsg(sumAll(2,2,3))       //7
 logMsg(sumAll(2,2))         //6
-logMsg(sumAll(undefined,2)) //54 - passado o parâmetro undefined, o valor atribuído é o padrão
+logMsg(sumAll(undefined,2)) //54 - passando o parâmetro undefined, o valor atribuído é o padrão
 
 
 //operador spread - '...valores' em funções, deve ficar no final dos parâmetros declarados

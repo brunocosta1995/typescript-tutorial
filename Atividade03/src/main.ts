@@ -4,18 +4,19 @@ let arrNumbStr = ['john', 44, 'dave'];
 let arrBoolStrNumb = [true, 'ok', 1995];
 
 stringArr.push(1999);
-stringArr.unshift(arrBoolStrNumb[0]);
+stringArr.unshift(arrBoolStrNumb[1]);
 const varStr = arrBoolStrNumb[1]; // varStr possui tbm a determinação dos tipos de arrBoolStrNumb
 stringArr[0] = varStr;
 arrNumbStr = arrBoolStrNumb;
 arrNumbStr = stringArr;
-
+         
 console.log(stringArr);
 console.log(arrNumbStr);
 console.log(arrBoolStrNumb);
 
 
 let bands: string[] = [];
+bands.push(stringArr[0]);
 let test = [];
 bands = test;
 test = bands;
@@ -23,7 +24,7 @@ test = bands;
 let myTuple: [string, number, boolean] = ['bruno', 28, true]; //Array Tuple restrito em tipo, posição, quantidade
 myTuple.push('arr'); //adc novo elemento
 myTuple[3] = 'tereza'; 
-console.log(myTuple);
+console.log('tupla = ' + myTuple);
 let myArr = ['pamella', 22, false]; 
 
 myTuple = myArr;
@@ -60,6 +61,14 @@ interface CursoCompleto {
     status: boolean,
     alunos: (string | number)[]
 }
+
+let novoCurso: CursoCompleto = {
+    nome: 'programação',
+    status: true,
+    alunos: [1, 4, 'bruno']
+}
+
+console.log(novoCurso);
 
 //todos os atributos devem ser preenchidos do tipo determinado
 let curso1: Curso = {
