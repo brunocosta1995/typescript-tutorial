@@ -1,179 +1,128 @@
-// type Employee = {
-//   id: number;
-//   name: string;
-//   department: string;
-// };
+// let person: [string, number] = ['john', 24];
 
-// type Manager = {
-//   id: number;
-//   name: string;
-//   employees: Employee[];
-// };
+// let data: readonly [number, number, number] = [29, 6, 1995];
 
-// type Staff = Employee | Manager;
+// let opcional: [string, number?] = ['bruno'];
 
-// function printStaffDetails(input: Staff) {
-//   if ("employees" in input) {
-//     console.log(`This is a manager with: ${input.employees.length} employees`);
-//   } else {
-//     console.log(
-//       `This is a employee working in the: ${input.department} department`
-//     );
+// const returnPerson = (): [string, number] => {
+//   return person;
+// }
+
+// console.log(returnPerson()[1]);
+
+// enum ServerResponse{
+//   success = 'success',
+//   error = 'error'
+// }
+
+// Object.values(ServerResponse).forEach((values) => {
+//   if (typeof values === 'number') {
+//     console.log(values);
+    
+//   }
+  
+// })
+
+// console.log(ServerResponse);
+
+// interface ServerStatus {
+//   result: ServerResponse,
+//   data: string[]
+// }
+
+// function getServerResponse(): ServerStatus {
+//   return {
+//     result: ServerResponse.success,
+//     data: ['firstData', 'secondData']
 //   }
 // }
 
-// const steve: Employee = {
-//   id: 1,
-//   name: "steve",
-//   department: "finances",
-// };
+// console.log(getServerResponse());
 
-// const alice: Employee = {
-//   id: 1,
-//   name: "alice",
-//   department: "HR",
-// };
-
-// const bob: Manager = {
-//   id: 1,
-//   name: "bob",
-//   employees: [alice, steve],
-// };
-
-// printStaffDetails(bob);
-
-// interface Computer {
-//     readonly id: number;
-//     brand: string;
-//     ram: number;
-//     storage?: number;
-//     upgradeRam(newRam: number): number
+// enum UserRole {
+//   Admin,
+//   Manager,
+//   Employee
 // }
 
-// const myComputer: Computer = {
+// type User = {
+//   id: number;
+//   name: string;
+//   role: UserRole;
+//   contact: [email: string, phone: string]
+// }
+
+// function createUser(user: User): User {
+//   return user;
+// }
+
+// const userBruno = createUser(
+//   {
 //     id: 1,
-//     brand: 'dell',
-//     ram: 8,
-//     upgradeRam(newRam: number) {
-//         return this.ram + newRam;
-//     }
+//     name: 'bruno',
+//     role: UserRole.Employee,
+//     contact: ['bruno@bruno.com', '1999523288']
+//   }
+// )
+//  console.log(userBruno);
+ 
+
+// let strName: string = 'Bruno';
+// let strLength: number = (<string>strName).length;
+
+// type Bird = {
+//   name: string
 // }
 
-// console.log(myComputer.brand, `A ram atual é: ${myComputer.ram}GB`, `a nova ram é de ${myComputer
-//     .upgradeRam(4)}GB`
-// );
+// let birdString = '{"name": "Eagle"}';
+// let dogString = '{"breed": "Poodle"}';
 
-/*
-interface Person {
-    name: string;
-    getData(): string
+// let newBird = JSON.parse(birdString);
+// let newDog = JSON.parse(dogString);
+
+// let bird = newBird as Bird;
+// let dog = newDog as Bird;
+
+// console.log(bird.name);
+// console.log(dog.name);
+
+
+let unknownValue: unknown;
+
+unknownValue = 'bruno';
+unknownValue = 44.236554;
+unknownValue = true;
+
+
+if (typeof unknownValue === 'number') {
+  let newValue = unknownValue.toFixed(2);
+  unknownValue = newValue;
 }
 
 
-interface Person {
-    age: number
-}
-
-
-const person: Person = {
-    name: 'bruno',
-    age: 28,
-    getData() {
-        return `My name is ${this.name} and i have ${this.age} years`
-    }
-}
-
-console.log(person.getData());
-
-interface Employee extends Person {
-    employeeId: number
-}
-
-const employee: Employee = {
-    name: 'jane',
-    age: 24,
-    employeeId: 5,
-    getData() {
-        return `I'm employee with the id of ${this.employeeId} and my name is ${this.name} and i have ${this.age} years`
-    },
-}
-
-console.log(employee.getData());
-
-
-interface Manager extends Person, DogOwner {
-    managerFunc(): void
-}
-
-interface DogOwner {
-    dogName: 'thor';
-    getDog(): string
-}
-
-const manager: Manager = {
-    name: 'bob',
-    age: 44,
-    getData() {
-        return `I'm manager and my name is ${this.name} and i have ${this.age} years`
-    },
-    managerFunc: function() {
-        console.log(`i am the manager and my dog is called: ${this.dogName}`);
-        
-    },
-    dogName: 'thor',
-    getDog() {
-        return this.dogName;
-    },
-}
-
-manager.managerFunc();
-
-console.log(manager.getData());
-
-*/
-
-interface Person {
-  name: string;
-}
-
-interface DogOwner extends Person {
-  dogName: string;
-}
-
-interface Manager extends Person {
-  managePeople(): void;
-  delegateTasks(): void;
-}
-
-function getEmployee(): Person | DogOwner | Manager {
-  let generateNumber = Math.random();
-  if (generateNumber < 0.33) {
-    return { name: "bob" }; //Person
-  } else if (generateNumber < 0.66) {
-    return { name: "bob", dogName: "thor" }; //DogOwner
+function runCode() {
+  let value = Math.random();
+  if (value < 0.5) {
+    throw new Error('Somenthing went wrong');
   } else {
-    return {
-      name: "bob",
-      managePeople() {
-        console.log("iam the manager");
-      },
-      delegateTasks() {
-        console.log("task delegated");
-      },
-    }; //Manager
+    throw 'new error';
   }
 }
 
-const employee: Person | DogOwner | Manager = getEmployee();
-
-console.log(employee);
-
-function isManager(obj: Person | DogOwner | Manager): obj is Manager {
-    return 'managePeople' in obj;
+try {
+  runCode();
+} catch (error) {
+  if (error instanceof Error) {
+    console.log(error.message);
+  } else {
+    console.log(error);
+    console.log('erro ocorrido');
+    
+  }
+  
+  
+  
+  
 }
 
-isManager(employee);
 
-if (isManager(employee)) {
-    employee.delegateTasks();
-}
