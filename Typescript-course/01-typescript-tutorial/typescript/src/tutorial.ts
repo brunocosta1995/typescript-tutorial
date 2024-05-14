@@ -18,9 +18,9 @@
 // Object.values(ServerResponse).forEach((values) => {
 //   if (typeof values === 'number') {
 //     console.log(values);
-    
+
 //   }
-  
+
 // })
 
 // console.log(ServerResponse);
@@ -65,7 +65,6 @@
 //   }
 // )
 //  console.log(userBruno);
- 
 
 // let strName: string = 'Bruno';
 // let strLength: number = (<string>strName).length;
@@ -86,43 +85,96 @@
 // console.log(bird.name);
 // console.log(dog.name);
 
+// let unknownValue: unknown;
 
-let unknownValue: unknown;
+// unknownValue = "bruno";
+// unknownValue = 44.236554;
+// unknownValue = true;
 
-unknownValue = 'bruno';
-unknownValue = 44.236554;
-unknownValue = true;
+// if (typeof unknownValue === "number") {
+//   let newValue = unknownValue.toFixed(2);
+//   unknownValue = newValue;
+// }
+
+// function runCode() {
+//   let value = Math.random();
+//   if (value < 0.5) {
+//     throw new Error("Somenthing went wrong");
+//   } else {
+//     throw "new error";
+//   }
+// }
+
+// try {
+//   runCode();
+// } catch (error) {
+//   if (error instanceof Error) {
+//     console.log(error.message);
+//   } else {
+//     console.log(error);
+//     console.log("erro ocorrido");
+//   }
+// }
 
 
-if (typeof unknownValue === 'number') {
-  let newValue = unknownValue.toFixed(2);
-  unknownValue = newValue;
+// let value: never;
+
+// type Theme = 'dark' | 'light';
+
+// function checkTheme(theme: Theme) {
+//   if (theme === 'dark') {
+//     console.log('this is dark');
+//     return;
+//   } else if (theme === 'light') {
+//     console.log('this is light');
+//     return;
+//   }
+//   theme
+// }
+
+// enum Color {
+//   Red,
+//   Blue,
+//   // Green
+// }
+
+// function getColor(color: Color) {
+//   switch (color) {
+//     case Color.Red:
+//       return 'red';
+//     case Color.Blue:
+//       return 'blue';
+//     default:
+//       let inesperado: never = color;
+//       throw new Error(`Valor de cor não experado: ${inesperado}`);
+//   }
+// }
+
+
+// console.log(getColor(Color.Red));
+// console.log(getColor(Color.Blue));
+// console.log(getColor(Color.Green));
+
+
+
+// const susan = 'susan';
+
+// const name = 'name';
+
+import newStudent, {sayHello, person, type Student} from "./actions";
+
+sayHello('Typescript');
+console.log(newStudent);
+console.log(person);
+
+const anotherStudent: Student = {
+  name: 'Bruno',
+  age: 28
 }
 
+console.log(anotherStudent);
 
-function runCode() {
-  let value = Math.random();
-  if (value < 0.5) {
-    throw new Error('Somenthing went wrong');
-  } else {
-    throw 'new error';
-  }
-}
+import {example} from './example.js';
 
-try {
-  runCode();
-} catch (error) {
-  if (error instanceof Error) {
-    console.log(error.message);
-  } else {
-    console.log(error);
-    console.log('erro ocorrido');
-    
-  }
-  
-  
-  
-  
-}
-
+console.log(example);
 
