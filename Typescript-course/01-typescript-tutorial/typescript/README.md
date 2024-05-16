@@ -1802,7 +1802,7 @@ processValue(12);
 processValue(true);
 ```
 
-## Generics - Type Constraints 2
+## Generics - Type  2
 
 ```ts
 type Car = {
