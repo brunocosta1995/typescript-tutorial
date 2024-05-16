@@ -1,130 +1,130 @@
-type ValueType = string | number | boolean;
+// let array1: string[] = ['bruno', 'costa', 'silva'];
+// let arra2: number[] = [1,2,3];
+// let array3: boolean[] = [true, false, true];
 
-let value: ValueType;
-const random = Math.random();
-value = random < 0.33 ? 'Hello' : random < 0.66 ? 123.456 : true;
+let array1: Array<string> = ["bruno", "bruno", "burno"];
 
-function checkValue(value: ValueType) {
-  if (typeof value === 'string') {
-    console.log(value.toLowerCase());
-    return;
-  }
-  if (typeof value === 'number') {
-    console.log(value.toFixed(2));
-    return;    
-  }
-  if (typeof value === 'boolean') {
-    console.log(`boolean: ${value}`);
-    return;
-  }
+function returnValue<T>(arg: T): T {
+  return arg;
 }
 
-checkValue(value);
+const stringValue = returnValue<string>("bruno");
+const numberValue = returnValue<number>(99);
 
-type Dog = {type: 'dog'; name: string; bark: ()=> void}
-type Cat = {type: 'cat'; name: string; meow: ()=> void}
+console.log(stringValue, numberValue, array1);
 
-type Animal = Dog | Cat;
-
-function makeSound(animal: Animal) {
-  if (animal.type === 'dog') {
-    animal.bark();
-  } else {
-    animal.meow();
-  }
+interface genericsValue<T> {
+  name: T;
+  func: () => T;
 }
 
-const newDog: Dog = {
-  type: 'dog',
-  name: 'bruno',
-  bark() {
-    console.log('awaw');
+const newGenerics: genericsValue<string> = {
+  name: "generics",
+  func() {
+    return "funcGenerics";
   },
-}
-const newCat: Cat = {
-  type: 'cat',
-  name: 'chanel',
-  meow() {
-   console.log('miau');
-    
-  }
+};
+
+console.log(newGenerics.name, newGenerics.func());
+
+async function fetchData(): Promise<string> {
+  return "Meus Dados";
 }
 
-// makeSound(newDog);
-// makeSound(newCat);
+console.log(fetchData());
 
-function newSound(animal: Animal) {
-  if ('bark' in animal) {
-    animal.bark();
-  } else {
-    animal.meow();
-  }
+
+function generateArrayString(length: number, value: string): string[] {
+  let result: string[] = [];
+  result = Array(length).fill(value);
+  return result;
 }
 
-newSound(newDog);
-newSound(newCat);
+console.log(generateArrayString(5, 'ok'));
 
-function printLength(str: string | null | undefined) {
-  if (str) {
-    console.log(str.length);    
-  } else {
-    console.log(`${str} - No string provided`);
-  }
+function createAnyArray<T>(length: number, value: T): Array<T> {
+  let result: T[] = [];
+  result = Array(length).fill(value);
+  return result;
 }
 
-printLength('Bruno');
-printLength(undefined);
+console.log(createAnyArray<string>(10, 'bruno'));
+console.log(createAnyArray<number>(20, 54));
 
-try {
-  throw new Error("Erro ocorrido");
-} catch (error) {
-  if (error instanceof Error){
-    console.log('Erro do Error object: ' + error.message);
-  } else {
-    console.log('Erro desconhecido');
-  }
+
+function pares<T, U>(param1: T, param2: U): [T, U] {
+  return [param1, param2]
 }
 
-function checkInput(input: Date | string) {
-  if (input instanceof Date) {
-    return input.getFullYear().toString();
-  } else {
-    return input;
-  }
+const result = pares<number, boolean>(1234, true);
+// const result = pares(1234, true); 
+console.log(result);
+
+
+
+function restricao<T extends string>(value: T): T {
+  return value;
 }
 
 
-const today = new Date();
+type Car = {
+  brand: string;
+  model: string;
+};
 
-console.log(checkInput(today));
-console.log(checkInput('bruno'));
+const car: Car = {
+  brand: 'ford',
+  model: 'mustang',
+};
+
+type Product = {
+  name: string;
+  price: number;
+};
+
+const product: Product = {
+  name: 'shoes',
+  price: 1.99,
+};
 
 type Student = {
   name: string;
-  study(): void
+  age: number;
+};
+
+const student: Student = {
+  name: 'peter',
+  age: 20,
+};
+
+
+function printName<T extends {name: string}>(input: T): void {
+  // if ('name' in input) {
+    console.log(input.name);
+  // }
 }
 
-type User = {
-  name: string;
-  login(): void
+printName<Student>(student);
+printName<Product>(product);
+// printName<Car>(car);
+
+
+interface dataStore<T> {
+  data: T[]
 }
 
-type Person = Student | User;
-
-const randomPerson = (): Person => {
-  return Math.random() > 0.5 
-  ? {name: 'john', study() {console.log('studying');} }
-  : {name: 'mary', study() {console.log('logging in');}}
+const dataNumber: dataStore<number> = {
+  data: [1,2,3,4,5]
 }
 
-const person = randomPerson();
+console.log(dataNumber);
 
-function isStudent(person: Person): person is Student {
-  return (person as Student).study !== undefined;
+interface newData<T = any> {
+  data: T[]
 }
 
-if (isStudent(person)) {
-  person.study();
-} else {
-  person.login();
+const randomData: newData = {
+  data: ['bruno', 123, true]
 }
+
+console.log(randomData);
