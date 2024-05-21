@@ -1,47 +1,18 @@
-import {z} from 'zod';
-
-const tourSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  info: z.string(),
-  image: z.string(),
-  price: z.string(),
-})
-
-type Tour = z.infer<typeof tourSchema>;
-
-const url = "https://www.course-api.com/react-tours-project";
-
-// type TourData = {
-//   id: string,
+// interface Iperson {
 //   name: string,
-//   image: string,
-//   info: string,
-//   price: string
+//   age: number
 // }
 
-async function fetchData(url: string): Promise<Tour[]> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const rawData: Tour[] = await response.json();
-    const result = tourSchema.array().safeParse(rawData);
-    if (!result.success) {
-      throw new Error(`Error occurred! ${result.error}`);
-    }
-    console.log(result);
+// class Person implements Iperson {
+//   constructor(public name: string, public age: number) {}
+//   public greet() {
+//     console.log(`My name is ${this.name} and my age is ${this.age} years`);
     
-    return result.data;
-  } catch (error) {
-    const errorMsg = error instanceof Error ? error.message : 'Error occurred';
-    console.log(errorMsg);
-    return [];    
-  }
-}
+//   }
+// }
 
-const arrData = await fetchData(url);
+// const bruno = new Person('Bruno', 28);
 
-arrData.map((item) => {console.log(item.name)});
+// bruno.greet();
+
 
